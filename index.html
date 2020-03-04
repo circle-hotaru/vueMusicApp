@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>vuMusicApp</title>
+</head>
+<body>
+  <div class="wrap">
+    <!--播放器主题区域-->
+    <div class="play_wrap" id="player">
+      <div class="search_bar">
+        <img src="images/player_title.png" alt="">
+        <!--搜索歌曲-->
+        <input type="text" v-model="query" @keyup.enter="searchMusic">
+      </div>
+      <div class="center_con">
+        <!--搜索歌曲列表-->
+        <div class="song_wrapper">
+          <ul class="song_list">
+            <li v-for="item in musicList">
+              <a href="javascript:;" @click="playMusic(item.id)">▶</a>
+              <b>{{ item.name }}</b>
+              <span><i></i></span>
+            </li>
+          </ul>
+          <img src="images/line.png" class="switch_btn" alt="">
+        </div>
+        <!--歌曲信息容器-->
+        <div class="player_con">
+          <img src="images/player_bar.png" class="play_bar">
+          <!--黑胶碟片-->
+          <img src="images/disc.png" class="disc autoRotate">
+          <img src="./images/cover.png" class="cover autoRotate">
+        </div>
+      </div>
+      <div class="audio_con">
+        <audio ref='audio' :src="musicUrl" controls autoplay loop class="myaudio"></audio>
+      </div>
+      <video class="video_con" style="display: none;">
+        <video src="" controls="controls"></video>
+        <div class="mask"></div>
+    </video>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script src="./main.js"></script>
+</body>
+</html>
